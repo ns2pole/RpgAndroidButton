@@ -30,23 +30,32 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
-                            RelativeLayout.LayoutParams.WRAP_CONTENT,
-                            RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    layoutParams.leftMargin = (int)event.getX();
-                    layoutParams.topMargin = (int)event.getY();
+                    if(layout.getChildCount() == 0) {
+                        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
+                                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                                RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        layoutParams.leftMargin = (int)event.getX();
+                        layoutParams.topMargin = (int)event.getY();
 
-                    Button button = new Button(MainActivity.this);
-                    button.setText("Button");
-                    button.setLayoutParams(layoutParams);
+                        Button button = new Button(MainActivity.this);
+                        button.setText("コントローラー");
+                        button.setLayoutParams(layoutParams);
 
-                    layout.addView(button);
+                        layout.addView(button);
+                    }
                     return true;
                 }
                 return false;
             }
-        });
-    }
 
+//            @Override
+//            public boolean performClick() {
+//                return super.performCkick();
+//            }
+
+        });
+
+
+    }
 
 }
