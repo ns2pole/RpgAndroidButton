@@ -17,27 +17,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button button = findViewById(R.id.myButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(), "ボタンがクリックされました", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        Button button = findViewById(R.id.myButton);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(v.getContext(), "ボタンがクリックされました", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         RelativeLayout layout = findViewById(R.id.layout);
         layout.setOnTouchListener(new View.OnTouchListener() {
+            private static final int BUTTON_ID = 12345;
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    if(layout.getChildCount() == 0) {
+                    if(layout.findViewById(BUTTON_ID) != null) {
+                        layout.removeView(layout.findViewById(BUTTON_ID));
+                    } else {
                         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(
                                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                                 RelativeLayout.LayoutParams.WRAP_CONTENT);
                         layoutParams.leftMargin = (int)event.getX();
                         layoutParams.topMargin = (int)event.getY();
-
                         Button button = new Button(MainActivity.this);
+                        button.setId(BUTTON_ID);
                         button.setText("コントローラー");
                         button.setLayoutParams(layoutParams);
 
